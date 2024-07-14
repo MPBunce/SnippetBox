@@ -53,6 +53,7 @@ func main() {
 }
 
 func openDB(dsn string) (*sql.DB, error) {
+	log.Println("database called")
 	db, err := sql.Open("sqlite3", dsn)
 	if err != nil {
 		return nil, err
