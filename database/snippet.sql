@@ -17,6 +17,7 @@ INSERT INTO snippets (title, content, created, expires) VALUES (
     CURRENT_TIMESTAMP,
     DATETIME(CURRENT_TIMESTAMP, '+365 days')
 );
+
 INSERT INTO snippets (title, content, created, expires) VALUES (
     'Over the wintry forest',
     'Over the wintry\nforest, winds howl in rage\nwith no leaves to blow.\n\n– N',
@@ -33,3 +34,12 @@ INSERT INTO snippets (title, content, created, expires) VALUES (
 
 
 SELECT * FROM snippets
+
+SELECT id, title, content, created, expires
+FROM snippets
+WHERE expires > strftime('%Y-%m-%d %H:%M:%S', 'now')
+  AND id = 2;
+
+
+SELECT id, title, content, created, expires FROM snippets
+WHERE datetime(expires) > datetime('now') ORDER BY created DESC LIMIT 10
