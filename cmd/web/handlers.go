@@ -23,6 +23,10 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	app.render(w, r, "home.page.tmpl", &templateData{
+		Snippets: s,
+	})
+
 	data := &templateData{Snippets: s}
 	files := []string{
 		"./ui/html/home.page.tmpl",
@@ -51,6 +55,7 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
+
 	s, err := app.snippets.Get(id)
 	if err == models.ErrNoRecord {
 		app.notFound(w)
@@ -59,6 +64,10 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 		return
 	}
+
+	app.render(w, r, "home.page.tmpl", &templateData{
+		Snippets: []*models.Snippet{s},
+	})
 
 	data := &templateData{Snippet: s}
 	files := []string{
