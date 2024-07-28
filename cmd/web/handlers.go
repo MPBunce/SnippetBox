@@ -77,6 +77,7 @@ func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
 	} else if expires != "365" && expires != "7" && expires != "1" {
 		errors["expires"] = "This field is invalid"
 	}
+
 	if len(errors) > 0 {
 		fmt.Fprint(w, errors)
 		return

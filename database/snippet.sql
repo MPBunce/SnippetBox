@@ -20,14 +20,14 @@ INSERT INTO snippets (title, content, created, expires) VALUES (
 
 INSERT INTO snippets (title, content, created, expires) VALUES (
     'Over the wintry forest',
-    'Over the wintry\nforest, winds howl in rage\nwith no leaves to blow.\n\n– N',
+    'Over the wintry\nforest, winds howl in rage\nwith no leaves to blow.\n N',
     CURRENT_TIMESTAMP,
     DATETIME(CURRENT_TIMESTAMP, '+365 days')
 );
 
 INSERT INTO snippets (title, content, created, expires) VALUES (
     'First autumn morning',
-    'First autumn morning\nthe mirror I stare into\nshows my father''s face.\n',
+    'First autumn morning \n the mirror I stare into\nshows my father''s face.\n',
     CURRENT_TIMESTAMP,
     DATETIME(CURRENT_TIMESTAMP, '+7 days')
 );
