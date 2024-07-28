@@ -8,13 +8,16 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/golangcollege/sessions"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 type application struct {
 	errorLog      *log.Logger
 	infoLog       *log.Logger
+	session       *sessions.Session
 	snippets      *sqlite.SnippetModel
 	templateCache map[string]*template.Template
 }
@@ -23,6 +26,7 @@ func main() {
 
 	//Defining input address
 	addr := flag.String("addr", ":4000", "HTTP network address")
+	secret := flag.String("secret", "s6Ndh+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key for the application")
 	flag.Parse()
 
 	//Logging Info
@@ -40,10 +44,15 @@ func main() {
 		errorLog.Fatal(err)
 	}
 
+	//Initialize session
+	session := sessions.New([]byte(*secret))
+	session.Lifetime = 12 * time.Hour
+
 	//Initialize app
 	app := &application{
 		errorLog:      errorLog,
 		infoLog:       infoLog,
+		session:       session,
 		snippets:      &sqlite.SnippetModel{DB: db},
 		templateCache: templateCache,
 	}

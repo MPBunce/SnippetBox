@@ -1,17 +1,17 @@
 package main
 
 import (
+	"MPBunce/SnippetBox/pkg/forms"
 	"MPBunce/SnippetBox/pkg/models"
 	"html/template"
-	"net/url"
 	"path/filepath"
 	"time"
 )
 
 type templateData struct {
 	CurrentYear int
-	FormData    url.Values
-	FormErrors  map[string]string
+	Flash       string
+	Form        *forms.Form
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
 }
