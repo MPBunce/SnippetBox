@@ -43,3 +43,14 @@ WHERE expires > strftime('%Y-%m-%d %H:%M:%S', 'now')
 
 SELECT id, title, content, created, expires FROM snippets
 WHERE datetime(expires) > datetime('now') ORDER BY created DESC LIMIT 10
+
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    hashed_password CHAR(60) NOT NULL,
+    created DATETIME NOT NULL
+);
+
+CREATE UNIQUE INDEX users_uc_email ON users (email);
+

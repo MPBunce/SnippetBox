@@ -21,6 +21,7 @@ type application struct {
 	session       *sessions.Session
 	snippets      *sqlite.SnippetModel
 	templateCache map[string]*template.Template
+	users         *sqlite.UserModel
 }
 
 func main() {
@@ -57,6 +58,7 @@ func main() {
 		session:       session,
 		snippets:      &sqlite.SnippetModel{DB: db},
 		templateCache: templateCache,
+		users:         &sqlite.UserModel{DB: db},
 	}
 
 	tlsConfig := &tls.Config{
