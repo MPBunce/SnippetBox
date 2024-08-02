@@ -24,6 +24,10 @@ type application struct {
 	users         *sqlite.UserModel
 }
 
+type contextKey string
+
+var contextKeyUser = contextKey("user")
+
 func main() {
 
 	//Defining input address
